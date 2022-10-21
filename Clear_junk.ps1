@@ -1,12 +1,12 @@
 Write-Host -ForegroundColor yellow "#######################################################"
 ""
 Write-Host -ForegroundColor Green "Powershell commands to delete cache & cookies in Firefox, Chrome & IE browsers"
-Write-Host -ForegroundColor Green "Updated by DEFOL Benjamin"
 Write-Host -ForegroundColor Green "VERSION: 2.5"
 ""
 Write-Host -ForegroundColor yellow "#######################################################"
 ""
 Write-Host -ForegroundColor Green "CHANGE_LOG:
+v2.7: - Anonymizing the script
 v2.6: - Added Microsoft Teams cache clean
 v2.5: - Added commands to kill apps before cleaning
 v2.4: - Resolved *.default issue, issue was with the file path name not with *.default, but issue resolved
@@ -99,7 +99,7 @@ if ($list) {
     Get-Process teams|Stop-Process
     Import-CSV -Path C:\users\$env:USERNAME\users.csv | foreach {
         Remove-Item -path "C:\Users\$($_.Name)\AppData\Roaming\Microsoft\Teams\*" -Recurse -Force -EA SilentlyContinue -Verbose
-		}
+	}
     Write-Host -ForegroundColor yellow "Done..."
     ""
     Write-Host -ForegroundColor Green "All Tasks Done!"
