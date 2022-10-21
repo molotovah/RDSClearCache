@@ -7,6 +7,7 @@ Write-Host -ForegroundColor Green "VERSION: 2.5"
 Write-Host -ForegroundColor yellow "#######################################################"
 ""
 Write-Host -ForegroundColor Green "CHANGE_LOG:
+v2.6: - Added Microsoft Teams cache clean
 v2.5: - Added commands to kill apps before cleaning
 v2.4: - Resolved *.default issue, issue was with the file path name not with *.default, but issue resolved
 v2.3: - Added Cache2 to Mozilla directories but found that *.default is not working
@@ -87,8 +88,18 @@ if ($list) {
 	    Remove-Item -path "C:\Users\$($_.Name)\AppData\Local\Temp\*" -Recurse -Force -EA SilentlyContinue -Verbose
 	    Remove-Item -path "C:\Windows\Temp\*" -Recurse -Force -EA SilentlyContinue -Verbose
 	    Remove-Item -path "C:\`$recycle.bin\" -Recurse -Force -EA SilentlyContinue -Verbose
-            }
-
+		}
+   "-------------------"
+    # Clear Microsoft Teams
+    Write-Host -ForegroundColor Green "SECTION 6: Clearing Microsoft Teams Caches"
+     "-------------------"
+    Write-Host -ForegroundColor yellow "Clearing Teams caches"
+    Write-Host -ForegroundColor cyan
+    #Killing Teams
+    Get-Process teams|Stop-Process
+    Import-CSV -Path C:\users\$env:USERNAME\users.csv | foreach {
+        Remove-Item -path "C:\Users\$($_.Name)\AppData\Roaming\Microsoft\Teams\*" -Recurse -Force -EA SilentlyContinue -Verbose
+		}
     Write-Host -ForegroundColor yellow "Done..."
     ""
     Write-Host -ForegroundColor Green "All Tasks Done!"
