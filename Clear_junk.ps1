@@ -58,7 +58,7 @@ if ($list) {
     # Clear Google Chrome 
     Write-Host -ForegroundColor Green "SECTION 4: Clearing Google Chrome Caches"
     "-------------------"
-    Write-Hoste -ForegroundColor yellow "Killing Chrome Instances"
+    Write-Host -ForegroundColor yellow "Killing Chrome Instances"
     taskkill /im chrome.exe /f
     Write-Host -ForegroundColor yellow "Clearing Google caches"
     Write-Host -ForegroundColor cyan
